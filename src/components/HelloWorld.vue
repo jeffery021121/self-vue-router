@@ -35,6 +35,9 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  created(){
+    window.aa = this
   }
 }
 </script>
