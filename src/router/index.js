@@ -3,32 +3,36 @@ import Vue from 'vue'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import VueRouter from '../../modules/vue-router'
+import AboutA from '../views/AboutA.vue';
 // Vue.use(VueRouter)
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: About,
-    children: [
-      {
-        path: 'childrenAbout', // 这里不能有/
-        name: 'childrenAbout',
-        component: About
-      }
-    ]
-  }
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
+    {
+        path: '/',
+        name: 'Home',
+        component: Home,
+    },
+    {
+        path: '/about',
+        component: About,
+        children: [
+            {
+                path: 'a',
+                component: AboutA
+            },
+            {
+                path: 'b', component: {
+                    render: (h) => <h1>about b</h1>
+                },
+            }
+        ]
+    }
+    // {
+    //   path: '/about',
+    //   name: 'About',
+    //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    // }
 ]
 
 // const router = new VueRouter({
@@ -38,8 +42,8 @@ const routes = [
 // })
 
 const router = new VueRouter({
-  mode: 'hash',
-  routes
+    mode: 'hash',
+    routes
 })
 
 export default router

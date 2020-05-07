@@ -8,7 +8,25 @@ const createMatcher = (routes) => {
   }
 
   const match = (location) => {
-    return {}
+
+    // 这里的match其实就是创建当前route的一个过程
+    let route = {
+      path: location,
+      matched: [],
+    }
+    const record = pathMap[location] // 这个record其实就是最深的那个组件，还要找到它所有的父级
+    if (!record) return route
+    route.matched = [record]
+    let parentRecord = record.parent
+    while (parentRecord) {
+      // 这里必须使用unshift，保证顺序是由父到子的，
+      // 否则到router-view遍历查找index的时候就会让第一个router-view去渲染最后一个matched.
+      // 然后因为最后一个matched一定没有router-view 标签，所以其他的record都不会渲染。
+      route.matched.unshift(parentRecord)
+      // route.matched.push(parentRecord)
+      parentRecord = parentRecord.parent
+    }
+    return route
   }
 
   return { match, addroutes }

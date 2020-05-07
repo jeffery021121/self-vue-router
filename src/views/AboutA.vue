@@ -1,13 +1,9 @@
 <template>
-  <div class="about">
-    <h1>about页面</h1>
-    <router-view key='about内的routerView'></router-view>
-
-  </div>
+  <h1>我是aboutaaaaaaaaaaaaaaaaaaaaaaaa啊</h1>
 </template>
 <script>
 export default {
-  name: "about",
+  name: "aboutaaaaa",
   created() {
     // console.log("about------matched", this.$route);
   }
