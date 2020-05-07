@@ -1,7 +1,7 @@
 
 // 根据匹配的route，找到自己是哪一个record，渲染这个record的component
 const routerView = {
-  // name: 'routerView',
+  name: 'routerView',
   beforeCreate() {
     this.$vnode.data.routerView = true
   },
@@ -15,6 +15,7 @@ const routerView = {
         if (parent.$vnode && parent.$vnode.data.routerView) ++index
         parent = parent.$parent
       }
+      console.log('this.$route.matched',this.$route.matched)
       const record = this.$route.matched[index]
       return record
     }

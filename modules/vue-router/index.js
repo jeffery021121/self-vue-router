@@ -16,6 +16,7 @@ class VueRouter {
      */
     const { routes, mode } = options
     this.matcher = createMatcher(routes) // 创建匹配器，处理参数 返回 match和addroutes方法
+    this.beforeHooks = []
 
     /* 
     解释一下history是干嘛的，要不然思路就凝滞了
@@ -64,6 +65,7 @@ class VueRouter {
     // 这一次是为了初始化current
 
     this.history.listen(() => { // 通过listen方法先注册号回调
+      console.log('this.history.current',this.history.current)
       app._route = this.history.current
     })
 
@@ -76,6 +78,17 @@ class VueRouter {
     // 这个时候应该拿到初始路径，然后做一个跳转
     // 开始init之前，先把基础依赖处理好，就是match和history
   }
+
+  push(location) { // 这个方法也得需要各自路由实现
+    window.location.hash = location
+    // this.history.transitionTo(location)
+  }
+
+  beforeEach(hook) {//调用该方法注册beforeEach钩子
+    this.beforeHooks.push(hook)
+  }
 }
+
+
 
 export default VueRouter

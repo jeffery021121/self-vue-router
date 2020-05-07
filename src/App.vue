@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <!-- <router-link to="/">Home</router-link> 
-      <router-link to="/about">About</router-link>-->
+      <router-link to="/">Home</router-link> 
+      <router-link to="/about">About</router-link>
+      <button @click="clickMe">点我去/about/a</button>
       我是app
     </div>
     <router-view key="app.vue内的routerView"></router-view>
@@ -13,6 +14,11 @@ export default {
   name: "app",
   beforeCreate() {
     // console.log('app:::::::::',this)
+  },
+  methods:{
+    clickMe(){
+      this.$router.push('/about/a')
+    }
   }
 };
 </script>
