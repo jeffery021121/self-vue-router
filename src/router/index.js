@@ -52,5 +52,10 @@ router.beforeEach((to,from,next)=>{ //路由钩子
         next();
     }, 1000);
 })
-
+router.beforeEach((to, from, next) => { //路由钩子
+  setTimeout(() => {
+    console.log('2.beforeEach')
+    next();
+  }, 1000);
+})
 export default router
